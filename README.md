@@ -19,8 +19,6 @@ Lead generation and digital presence for trades & service businesses across Sout
 The following need to be replaced before launch:
 
 - **Logo SVG**: Replace `.logo-icon-placeholder` with actual SVG logo
-- **Email**: `hello@brkgroup.co.za`
-- **Phone**: `+27 12 345 6789`
 - **Form submission**: Currently shows alert, needs backend integration
 
 ## Tech Stack
