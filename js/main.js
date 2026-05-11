@@ -280,6 +280,31 @@ function initScrollAnimations() {
       toggleActions: 'play none none none'
     }
   });
+
+  // Animate process steps
+  gsap.utils.toArray('.step').forEach((el, i) => {
+    gsap.from(el, {
+      opacity: 0,
+      y: 40,
+      duration: 0.7,
+      delay: i * 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+  });
+
+  // Animate WhatsApp button entrance
+  gsap.from('.whatsapp-float', {
+    scale: 0,
+    opacity: 0,
+    duration: 0.6,
+    delay: 2,
+    ease: 'back.out(1.7)'
+  });
 }
 
 

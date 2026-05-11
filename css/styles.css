@@ -706,13 +706,125 @@ img {
 
 
 /* ============================================
+   How It Works Section
+   ============================================ */
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.step {
+  position: relative;
+  padding: 40px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s ease;
+}
+
+.step:hover {
+  border-color: var(--orange);
+}
+
+.step-num {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--orange);
+  margin-bottom: 24px;
+}
+
+.step h3 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 16px;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+}
+
+.step p {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+
+/* ============================================
+   WhatsApp Button
+   ============================================ */
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  background-color: #128c7e;
+}
+
+
+/* ============================================
+   Hero Adjustments
+   ============================================ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(14, 13, 11, 0.7), rgba(14, 13, 11, 0.7)), 
+              url('../Images/Branding/Gemini_Generated_Image_g248vig248vig248.png') center/cover no-repeat;
+  z-index: -1;
+}
+
+
+/* ============================================
    Responsive
    ============================================ */
 
 @media (max-width: 1024px) {
-  .pillars {
+  .process-steps {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
+}
+
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
+}
 
   .about-grid {
     grid-template-columns: 1fr;
