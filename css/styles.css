@@ -18,6 +18,11 @@
   --muted: #6e6860;
   --text: #a8a09a;
 
+  /* New Gradients */
+  --grad-dark: radial-gradient(circle at top left, #1a1815, #0e0d0b);
+  --grad-card: linear-gradient(145deg, #1a1815, #141311);
+  --grad-orange: linear-gradient(135deg, #e8622a, #b0431a);
+
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Barlow', sans-serif;
   --font-condensed: 'Barlow Condensed', sans-serif;
@@ -34,6 +39,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Texture Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.04;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 a {
@@ -165,7 +185,7 @@ img {
 }
 
 .nav-cta {
-  background: var(--orange);
+  background: var(--grad-orange);
   color: white !important;
   font-size: 12px !important;
   font-weight: 700 !important;
@@ -246,7 +266,7 @@ img {
 }
 
 .btn-primary {
-  background: var(--orange);
+  background: var(--grad-orange);
   color: white;
   padding: 14px 32px;
 }
@@ -376,6 +396,7 @@ img {
 .section {
   padding: 100px 60px;
   border-bottom: 1px solid var(--border);
+  background: var(--grad-dark);
 }
 
 .section-header {
@@ -396,7 +417,7 @@ img {
 }
 
 .pillar {
-  background: var(--card);
+  background: var(--grad-card);
   padding: 48px 40px;
 }
 
@@ -517,7 +538,7 @@ img {
    ============================================ */
 
 .cta-band {
-  background: var(--orange);
+  background: var(--grad-orange);
   padding: 80px 60px;
   display: flex;
   justify-content: space-between;
@@ -718,7 +739,7 @@ img {
 .step {
   position: relative;
   padding: 40px;
-  background: var(--card);
+  background: var(--grad-card);
   border: 1px solid var(--border);
   transition: border-color 0.3s ease;
 }
@@ -800,8 +821,9 @@ img {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(rgba(14, 13, 11, 0.7), rgba(14, 13, 11, 0.7)), 
-              url('../Images/Branding/Gemini_Generated_Image_g248vig248vig248.png') center/cover no-repeat;
+  background: linear-gradient(rgba(14, 13, 11, 0.9), rgba(14, 13, 11, 0.8)), 
+              url('../Images/Branding/Gemini_Generated_Image_lt2igylt2igylt2i.png') center/cover no-repeat;
+  background-attachment: fixed;
   z-index: -1;
 }
 
