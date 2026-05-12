@@ -243,23 +243,6 @@ function initScrollAnimations() {
     });
   });
 
-  // Animate portfolio items
-  gsap.utils.toArray('.portfolio-item').forEach((el, i) => {
-    gsap.from(el, {
-      opacity: 0,
-      y: 40,
-      scale: 0.98,
-      duration: 0.6,
-      delay: i * 0.1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: '.portfolio-grid',
-        start: 'top 80%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
   // Animate CTA band
   gsap.from('.cta-band h2', {
     opacity: 0,
@@ -354,9 +337,23 @@ function initSmoothScroll() {
 
 
 /* ============================================
-   Form Handling
+   Form Handling (Placeholder)
    ============================================ */
 
-// Form submission is handled by FormSubmit.co
-// No JavaScript interception needed - form submits directly to the service
-// which then emails marketing@brkgroup.co.za
+const form = document.querySelector('.contact-form');
+if (form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Get form data
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    // Log for now (replace with actual submission)
+    console.log('Form submitted:', data);
+
+    // Show success message (placeholder)
+    alert('Thanks for your message! We\'ll be in touch soon.');
+    form.reset();
+  });
+}
