@@ -525,12 +525,12 @@ img {
   font-weight: 500;
   color: var(--cream);
   text-align: center;
-  transition: all 0.3s ease;
+  letter-spacing: 0;
+  transition: letter-spacing 0.3s ease;
 }
 
 .industry:hover {
-  background: var(--border);
-  color: var(--orange);
+  letter-spacing: 0.12em;
 }
 
 
