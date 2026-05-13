@@ -455,7 +455,8 @@ img {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+  max-width: 720px;
   gap: 80px;
   align-items: start;
 }
