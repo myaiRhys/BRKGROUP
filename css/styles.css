@@ -822,8 +822,8 @@ img {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(rgba(14, 13, 11, 0.9), rgba(14, 13, 11, 0.8)), 
-              url('../Images/Branding/Gemini_Generated_Image_lt2igylt2igylt2i.png') center/cover no-repeat;
+  background: linear-gradient(rgba(14, 13, 11, 0.9), rgba(14, 13, 11, 0.8)),
+              url('../Images/Branding/new hero.png') center/cover no-repeat;
   background-attachment: fixed;
   z-index: -1;
 }
