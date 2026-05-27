@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /brk-serif.html
+
+Sitemap: https://brkgroup.co.za/sitemap.xml

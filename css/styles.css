@@ -218,7 +218,6 @@ img {
 }
 
 .mobile-menu {
-  display: none;
   position: fixed;
   top: 72px;
   left: 0;
@@ -227,10 +226,16 @@ img {
   border-bottom: 1px solid var(--border);
   padding: 24px 60px;
   z-index: 99;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .mobile-menu.active {
-  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .mobile-menu ul {
@@ -663,6 +668,21 @@ img {
   min-height: 120px;
 }
 
+.form-success {
+  display: none;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--orange);
+  text-align: center;
+}
+
+.form-success p {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--cream);
+  line-height: 1.6;
+}
+
 
 /* ============================================
    Footer
@@ -698,6 +718,12 @@ img {
   font-family: var(--font-sans);
   font-size: 14px;
   color: var(--muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
 }
 
 .footer-links a {
@@ -824,7 +850,7 @@ img {
   right: 0;
   bottom: 0;
   background: linear-gradient(rgba(14, 13, 11, 0.9), rgba(14, 13, 11, 0.8)),
-              url('../Images/Branding/new hero.png') center/cover no-repeat;
+              url('../Images/Branding/hero.webp') center/cover no-repeat;
   background-attachment: fixed;
   z-index: -1;
 }
