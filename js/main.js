@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initScrollAnimations();
   initSmoothScroll();
+  initContactForm();
+  updateCopyrightYear();
 });
 
 
@@ -337,23 +339,52 @@ function initSmoothScroll() {
 
 
 /* ============================================
-   Form Handling (Placeholder)
+   Form Handling
    ============================================ */
 
-const form = document.querySelector('.contact-form');
-if (form) {
-  form.addEventListener('submit', (e) => {
+function initContactForm() {
+  const form = document.querySelector('.contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Get form data
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
+    const btn = form.querySelector('button[type="submit"]');
+    const success = form.querySelector('.form-success');
+    const data = Object.fromEntries(new FormData(form));
 
-    // Log for now (replace with actual submission)
-    console.log('Form submitted:', data);
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
 
-    // Show success message (placeholder)
-    alert('Thanks for your message! We\'ll be in touch soon.');
-    form.reset();
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        form.querySelectorAll('.form-group, button[type="submit"]').forEach(el => el.style.display = 'none');
+        success.style.display = 'block';
+      } else {
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+        alert('Something went wrong. Please email us directly at marketing@brkgroup.co.za');
+      }
+    } catch {
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us directly at marketing@brkgroup.co.za');
+    }
   });
+}
+
+
+/* ============================================
+   Copyright Year
+   ============================================ */
+
+function updateCopyrightYear() {
+  const el = document.getElementById('copyright-year');
+  if (el) el.textContent = new Date().getFullYear();
 }
