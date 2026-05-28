@@ -299,14 +299,6 @@ function initScrollAnimations() {
     });
   });
 
-  // Animate WhatsApp button entrance
-  gsap.from('.whatsapp-float', {
-    scale: 0,
-    opacity: 0,
-    duration: 0.6,
-    delay: 2,
-    ease: 'back.out(1.7)'
-  });
 }
 
 
