@@ -82,7 +82,7 @@ function initHeroMoment() {
 
 function initCalmReveals() {
   const pending = Array.from(document.querySelectorAll(
-    '.section-head, .capability, .who-pole, .ethos-inner, .step, .about-body, .contact-form'
+    '.section-head, .capability, .who-pole, .work-card, .ethos-inner, .step, .about-body, .contact-form'
   ));
 
   pending.forEach(el => el.classList.add('reveal'));
