@@ -434,6 +434,94 @@ ol, ul { list-style: none; }
 
 
 /* ============================================
+   Selected work — image-forward cards (distinct from the capability index)
+   ============================================ */
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* preview area — renders as an intentional placeholder until a real
+   screenshot is dropped in (swap the .work-shot div for an <img>). */
+.work-shot {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 11px, rgba(25,20,15,0.02) 11px 22px),
+    var(--sand);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.work-shot span {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  padding: 7px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 40px;
+  background: var(--paper);
+}
+.work-card img.work-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+/* type accent along the top of each card */
+.work-card { border-top: 3px solid var(--clay); }
+.work-card--slate { border-top-color: var(--slate); }
+.work-card--slate .work-shot span { color: var(--slate); }
+
+.work-body {
+  padding: clamp(20px, 2.2vw, 26px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.work-body .meta { color: var(--clay); }
+.work-card--slate .work-body .meta { color: var(--slate); }
+.work-body h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 21px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.work-body p {
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+.work-link {
+  margin-top: auto;
+  padding-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: var(--ink);
+  border-bottom: 1px solid transparent;
+  align-self: flex-start;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.work-link:hover { color: var(--clay); border-color: var(--clay); }
+.work-card--slate .work-link:hover { color: var(--slate); border-color: var(--slate); }
+
+
+/* ============================================
    Ethos band — the one inverted-contrast moment
    ============================================ */
 
@@ -734,6 +822,8 @@ ol, ul { list-style: none; }
     padding: 32px 0;
   }
   .capability-for { text-align: left; padding-top: 0; }
+
+  .work-grid { grid-template-columns: 1fr; gap: 20px; }
 
   .who-grid { grid-template-columns: 1fr; gap: 20px; }
   .who-connector { flex-direction: row; height: auto; }
