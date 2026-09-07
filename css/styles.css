@@ -439,7 +439,8 @@ ol, ul { list-style: none; }
 
 .work-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 340px));
+  justify-content: start;
   gap: 28px;
 }
 
