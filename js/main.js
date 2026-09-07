@@ -1,337 +1,187 @@
 /* ============================================
    BRK Group — Main JavaScript
+   Motion budget: ONE orchestrated hero moment.
+   Everything else gets a single calm reveal.
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initHeroAnimation();
   initMobileMenu();
-  initScrollAnimations();
   initSmoothScroll();
   initContactForm();
   updateCopyrightYear();
+  initMotion();
 });
 
 
 /* ============================================
-   Hero Kinetic Typography
+   Motion controller
+   Respects prefers-reduced-motion and missing GSAP.
    ============================================ */
 
-function splitTextIntoChars(element) {
-  const text = element.innerHTML;
-  const chars = text.split('');
-  element.innerHTML = chars.map(char => {
-    if (char === ' ') return ' ';
-    return `<span class="char">${char}</span>`;
-  }).join('');
-}
+function initMotion() {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function splitItalicLine(element) {
-  const em = element.querySelector('em');
-  if (em) {
-    const text = em.textContent;
-    const chars = text.split('');
-    em.innerHTML = chars.map(char => {
-      if (char === ' ') return ' ';
-      return `<span class="char">${char}</span>`;
-    }).join('');
+  if (reduced) {
+    // Leave everything in its natural, visible state.
+    return;
   }
-}
 
-function initHeroAnimation() {
-  const line1 = document.querySelector('.hero-title .line-1');
-  const line2 = document.querySelector('.hero-title .line-2');
+  // Signal to CSS that JS-driven animation is live (pre-hides hero + mark).
+  document.body.classList.add('js-anim');
 
-  if (!line1 || !line2) return;
-
-  // Split text into characters
-  splitTextIntoChars(line1);
-  splitItalicLine(line2);
-
-  // Create timeline
-  const tl = gsap.timeline({ delay: 0.3 });
-
-  // Set initial states
-  gsap.set('.hero-label', { opacity: 0, y: 10 });
-  gsap.set('.line-1 .char', { opacity: 0, y: 80, rotationX: -40 });
-  gsap.set('.line-2 .char', { opacity: 0, y: 60, rotationX: -30 });
-  gsap.set('.hero-tagline', { opacity: 0, y: 10 });
-  gsap.set('.hero-description', { opacity: 0, y: 20 });
-  gsap.set('.hero-actions', { opacity: 0, y: 20 });
-
-  // Animation sequence
-  tl.to('.hero-label', {
-    opacity: 1,
-    y: 0,
-    duration: 0.6,
-    ease: 'power2.out'
-  })
-  .to('.line-1 .char', {
-    opacity: 1,
-    y: 0,
-    rotationX: 0,
-    duration: 0.8,
-    stagger: 0.035,
-    ease: 'power3.out'
-  }, '-=0.3')
-  .to('.line-2 .char', {
-    opacity: 1,
-    y: 0,
-    rotationX: 0,
-    duration: 0.9,
-    stagger: 0.03,
-    ease: 'power2.out'
-  }, '-=0.5')
-  .to('.hero-tagline', {
-    opacity: 1,
-    y: 0,
-    duration: 0.5,
-    ease: 'power2.out'
-  }, '-=0.4')
-  .to('.hero-description', {
-    opacity: 1,
-    y: 0,
-    duration: 0.6,
-    ease: 'power2.out'
-  }, '-=0.3')
-  .to('.hero-actions', {
-    opacity: 1,
-    y: 0,
-    duration: 0.6,
-    ease: 'power2.out'
-  }, '-=0.4');
+  initHeroMoment();
+  initCalmReveals();
 }
 
 
 /* ============================================
-   Mobile Menu
+   The hero moment — headline rises, growth mark draws
+   ============================================ */
+
+function initHeroMoment() {
+  const hasGsap = typeof window.gsap !== 'undefined';
+
+  if (!hasGsap) {
+    // Graceful fallback: reveal instantly if GSAP failed to load.
+    document.body.classList.remove('js-anim');
+    return;
+  }
+
+  // Prepare the growth-mark strokes for a draw-on animation.
+  const strokes = document.querySelectorAll('.hero-mark path');
+  strokes.forEach(path => {
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    path.style.opacity = 1;
+  });
+
+  // Explicit start states (elements are pre-hidden by the .js-anim CSS).
+  gsap.set('.hero-meta', { y: 10 });
+  gsap.set('.hero-title .line', { yPercent: 60 });
+  gsap.set('.hero-description', { y: 18 });
+  gsap.set('.hero-actions', { y: 18 });
+
+  const tl = gsap.timeline({ delay: 0.15, defaults: { ease: 'power3.out' } });
+
+  tl.to('.hero-meta', { opacity: 1, y: 0, duration: 0.5 })
+    .to('.hero-title .line', { opacity: 1, yPercent: 0, duration: 0.9, stagger: 0.12 }, '-=0.2')
+    // draw the rising growth line, then the arrowhead, alongside the headline
+    .to('.mark-line', { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' }, '-=0.9')
+    .to('.mark-head', { strokeDashoffset: 0, duration: 0.4 }, '-=0.25')
+    .to('.mark-arc',  { strokeDashoffset: 0, duration: 0.8, ease: 'power2.inOut' }, '-=1.0')
+    .to('.hero-description', { opacity: 1, y: 0, duration: 0.6 }, '-=0.7')
+    .to('.hero-actions', { opacity: 1, y: 0, duration: 0.6 }, '-=0.45');
+}
+
+
+/* ============================================
+   Calm reveals — one lightweight fade-up per block,
+   via IntersectionObserver (no per-card hover animation).
+   ============================================ */
+
+function initCalmReveals() {
+  const pending = Array.from(document.querySelectorAll(
+    '.section-head, .capability, .who-pole, .ethos-inner, .step, .about-body, .contact-form'
+  ));
+
+  pending.forEach(el => el.classList.add('reveal'));
+
+  // A scroll sweep (not IntersectionObserver) so nothing can be skipped and
+  // left permanently invisible during fast/flick/anchor scrolling.
+  let ticking = false;
+
+  const sweep = () => {
+    ticking = false;
+    const trigger = window.innerHeight * 0.92;
+    for (let i = pending.length - 1; i >= 0; i--) {
+      const el = pending[i];
+      if (el.getBoundingClientRect().top < trigger) {
+        el.classList.add('is-visible');
+        pending.splice(i, 1);
+      }
+    }
+    if (pending.length === 0) {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    }
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(sweep);
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+
+  // Reveal whatever is already in view on load, and re-check shortly after
+  // in case late assets (fonts, images) shift the layout.
+  sweep();
+  setTimeout(sweep, 350);
+
+  // Absolute failsafe: never leave content hidden, even if scroll events
+  // somehow don't fire (embeds, unusual scroll containers).
+  setTimeout(() => pending.slice().forEach(el => el.classList.add('is-visible')), 2500);
+}
+
+
+/* ============================================
+   Mobile menu
    ============================================ */
 
 function initMobileMenu() {
   const toggle = document.querySelector('.nav-toggle');
   const menu = document.querySelector('.mobile-menu');
-
   if (!toggle || !menu) return;
 
-  toggle.addEventListener('click', () => {
-    menu.classList.toggle('active');
-    toggle.classList.toggle('active');
+  const setState = (open) => {
+    menu.classList.toggle('active', open);
+    toggle.classList.toggle('active', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  };
+
+  toggle.addEventListener('click', () => setState(!menu.classList.contains('active')));
+
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setState(false));
   });
 
-  // Close menu when clicking a link
-  const links = menu.querySelectorAll('a');
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      menu.classList.remove('active');
-      toggle.classList.remove('active');
-    });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setState(false);
   });
 }
 
 
 /* ============================================
-   Scroll Animations
-   ============================================ */
-
-function initScrollAnimations() {
-  // Register ScrollTrigger
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Animate section headers
-  gsap.utils.toArray('.section-eyebrow').forEach(el => {
-    gsap.from(el, {
-      opacity: 0,
-      y: 20,
-      duration: 0.6,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-  gsap.utils.toArray('.section-title').forEach(el => {
-    gsap.from(el, {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-  // Animate pillars
-  gsap.utils.toArray('.pillar').forEach((el, i) => {
-    gsap.from(el, {
-      opacity: 0,
-      y: 40,
-      duration: 0.7,
-      delay: i * 0.1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-  // Animate stats
-  gsap.utils.toArray('.stat').forEach((el, i) => {
-    gsap.from(el, {
-      opacity: 0,
-      x: -30,
-      duration: 0.6,
-      delay: i * 0.15,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-  // Animate stat numbers (count up)
-  gsap.utils.toArray('.stat-number').forEach(el => {
-    const text = el.textContent;
-    const hasPlus = text.includes('+');
-    const hasX = text.includes('x');
-    const hasHr = text.includes('hr');
-
-    let num = parseInt(text.replace(/[^0-9]/g, ''));
-
-    if (!isNaN(num)) {
-      const obj = { val: 0 };
-
-      gsap.to(obj, {
-        val: num,
-        duration: 1.5,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        },
-        onUpdate: () => {
-          let display = Math.floor(obj.val);
-          if (hasPlus) display += '+';
-          if (hasX) display += 'x';
-          if (hasHr) display += 'hr';
-          el.textContent = display;
-        }
-      });
-    }
-  });
-
-  // Animate industries grid
-  gsap.utils.toArray('.industry').forEach((el, i) => {
-    gsap.from(el, {
-      opacity: 0,
-      scale: 0.95,
-      duration: 0.4,
-      delay: i * 0.03,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: '.industries-grid',
-        start: 'top 80%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-  // Animate CTA band
-  gsap.from('.cta-band h2', {
-    opacity: 0,
-    x: -40,
-    duration: 0.8,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '.cta-band',
-      start: 'top 80%',
-      toggleActions: 'play none none none'
-    }
-  });
-
-  gsap.from('.cta-band .btn', {
-    opacity: 0,
-    x: 40,
-    duration: 0.8,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '.cta-band',
-      start: 'top 80%',
-      toggleActions: 'play none none none'
-    }
-  });
-
-  // Animate contact form
-  gsap.from('.contact-form', {
-    opacity: 0,
-    y: 40,
-    duration: 0.8,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '.contact-form',
-      start: 'top 85%',
-      toggleActions: 'play none none none'
-    }
-  });
-
-  // Animate process steps
-  gsap.utils.toArray('.step').forEach((el, i) => {
-    gsap.from(el, {
-      opacity: 0,
-      y: 40,
-      duration: 0.7,
-      delay: i * 0.1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-}
-
-
-/* ============================================
-   Smooth Scroll
+   Smooth scroll (with sticky-nav offset)
    ============================================ */
 
 function initSmoothScroll() {
-  const links = document.querySelectorAll('a[href^="#"]');
-
-  links.forEach(link => {
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
-      if (href === '#') return;
+      if (href === '#' || href.length < 2) return;
 
       const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        const navHeight = document.querySelector('.nav').offsetHeight;
-        const targetPosition = target.offsetTop - navHeight;
+      if (!target) return;
 
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-      }
+      e.preventDefault();
+      const nav = document.querySelector('.nav');
+      const navHeight = nav ? nav.offsetHeight : 0;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
     });
   });
 }
 
 
 /* ============================================
-   Form Handling
+   Contact form (formsubmit.co AJAX endpoint — unchanged)
    ============================================ */
 
 function initContactForm() {
@@ -345,6 +195,7 @@ function initContactForm() {
     const success = form.querySelector('.form-success');
     const data = Object.fromEntries(new FormData(form));
 
+    const original = btn.textContent;
     btn.textContent = 'Sending…';
     btn.disabled = true;
 
@@ -359,12 +210,10 @@ function initContactForm() {
         form.querySelectorAll('.form-group, button[type="submit"]').forEach(el => el.style.display = 'none');
         success.style.display = 'block';
       } else {
-        btn.textContent = 'Send Message';
-        btn.disabled = false;
-        alert('Something went wrong. Please email us directly at marketing@brkgroup.co.za');
+        throw new Error('Bad response');
       }
     } catch {
-      btn.textContent = 'Send Message';
+      btn.textContent = original;
       btn.disabled = false;
       alert('Something went wrong. Please email us directly at marketing@brkgroup.co.za');
     }
@@ -373,7 +222,7 @@ function initContactForm() {
 
 
 /* ============================================
-   Copyright Year
+   Copyright year
    ============================================ */
 
 function updateCopyrightYear() {
