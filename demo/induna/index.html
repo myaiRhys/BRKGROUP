@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Induna — live demo (sample data)</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+  :root{
+    --bg:#0a0a0c; --panel:#111017; --panel2:#141109; --line:#211f1a; --line2:#2a2413;
+    --text:#e7e3da; --muted:#8a8478; --dim:#cfcabf; --amber:#d8a534; --amber-soft:#c9922e;
+    --green:#5f8a5f;
+  }
+  html,body{background:var(--bg);color:var(--text);min-height:100vh}
+  a{color:inherit}
+  .demo-ribbon{
+    background:linear-gradient(90deg,#2a2413,#1a1509);
+    border-bottom:1px solid var(--line2);
+    color:var(--amber);font-size:12.5px;font-family:ui-monospace,monospace;letter-spacing:.03em;
+    padding:8px 20px;display:flex;gap:10px;align-items:center;justify-content:center;text-align:center;
+  }
+  .demo-ribbon b{color:var(--text)}
+  .demo-ribbon .back{margin-left:auto;color:var(--muted);text-decoration:none}
+  .demo-ribbon .back:hover{color:var(--text)}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 22px 40px;display:flex;flex-direction:column;min-height:calc(100vh - 37px)}
+  header{display:flex;align-items:center;justify-content:space-between;padding:18px 4px 14px}
+  .brand{display:flex;align-items:center;gap:11px;font-size:19px;font-weight:800}
+  .mark{width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f0c24a,#b9791b);box-shadow:0 0 14px rgba(240,180,60,.5)}
+  .rt{display:flex;align-items:center;gap:16px;color:var(--muted);font-size:13px}
+  .rt .on{color:var(--amber)}
+  .tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .tab{padding:10px 15px;font-size:13.5px;color:var(--muted);border-radius:8px 8px 0 0;background:none;border:none;cursor:pointer}
+  .tab.on{background:#17150f;color:var(--text)}
+  .tab b{color:var(--amber-soft);font-weight:700;margin-left:5px}
+  .now{margin:16px 0;background:var(--panel2);border:1px solid var(--line2);border-radius:10px;padding:13px 16px;display:flex;align-items:center;gap:14px;font-size:14px}
+  .now .lab{color:var(--amber-soft);font-family:ui-monospace,monospace;font-size:11px;font-weight:700;letter-spacing:.06em}
+  .now .pill{margin-left:auto;background:var(--line2);color:var(--amber);font-size:12px;padding:3px 10px;border-radius:20px}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+  .tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px 18px}
+  .tile b{font-size:27px;font-weight:800;display:block;line-height:1}
+  .tile span{color:var(--muted);font-size:12.5px;margin-top:7px;display:block}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .panel h3{color:var(--amber);font-size:16px;font-weight:700;margin-bottom:14px}
+  .todo{display:flex;align-items:center;gap:11px;padding:9px 0;font-size:14px;color:var(--dim)}
+  .todo .ring{width:15px;height:15px;border:2px solid #4a4535;border-radius:50%;flex:none}
+  .prj{padding:9px 0;font-size:14px}
+  .prj .n{font-weight:600;color:var(--text)}
+  .prj .s{color:var(--green);font-size:12.5px;margin-left:6px}
+  .prj .s.warn{color:var(--amber-soft)}
+  .view{display:none}
+  .view.on{display:block}
+  .list{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:8px 20px}
+  .list .item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--dim)}
+  .list .item:last-child{border-bottom:none}
+  .list .item .ring{width:15px;height:15px;border:2px solid #4a4535;border-radius:50%;flex:none}
+  .list .item .tagm{margin-left:auto;font-size:11.5px;font-family:ui-monospace,monospace;color:var(--muted);background:#191712;padding:3px 9px;border-radius:20px}
+  .chat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+  .msg{max-width:76%;padding:11px 15px;border-radius:12px;font-size:14px;line-height:1.5}
+  .msg.you{align-self:flex-end;background:#1c2740;color:#dbe6f7}
+  .msg.ind{align-self:flex-start;background:var(--panel2);border:1px solid var(--line2);color:var(--dim)}
+  .msg .who{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;font-family:ui-monospace,monospace}
+  .ask{margin-top:auto;padding-top:20px}
+  .ask form{background:var(--panel);border:1px solid var(--line2);border-radius:12px;padding:8px 8px 8px 18px;display:flex;align-items:center;gap:10px}
+  .ask input{flex:1;background:none;border:none;color:var(--text);font-size:14px;outline:none;padding:8px 0}
+  .ask input::placeholder{color:#6f6a5e}
+  .send{width:38px;height:38px;border-radius:9px;background:var(--line2);color:var(--amber);border:none;font-size:17px;cursor:pointer;flex:none}
+  .send:hover{background:#37301c}
+  @media (max-width:720px){ .tiles{grid-template-columns:repeat(2,1fr)} .cols{grid-template-columns:1fr} .rt span:not(.on){display:none} }
+</style>
+</head>
+<body>
+  <div class="demo-ribbon">
+    <span>Live demo of <b>Induna</b> — sample data, nothing real. Built by BRK Group.</span>
+    <a class="back" href="../../index.html#work">← Back to BRK Group</a>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand"><span class="mark"></span>Induna</div>
+      <div class="rt"><span class="on">daemon online</span><span>&#9906;</span><span>&#9776;</span><span>&#128276;</span><span>&#9881;</span></div>
+    </header>
+
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-view="dash">Dash</button>
+      <button class="tab" data-view="chat">Chat</button>
+      <button class="tab" data-view="all">All</button>
+      <button class="tab" data-view="work">Work<b>10</b></button>
+      <button class="tab" data-view="personal">Personal<b>6</b></button>
+      <button class="tab" data-view="builds">Builds</button>
+    </div>
+
+    <!-- Dash -->
+    <section class="view on" id="view-dash">
+      <div class="now"><span class="lab">NOW</span><span>Draft follow-up to a new enquiry</span><span class="pill">+4</span></div>
+      <div class="tiles">
+        <div class="tile"><b>6</b><span>tasks</span></div>
+        <div class="tile"><b>12</b><span>unread</span></div>
+        <div class="tile"><b>2</b><span>approvals</span></div>
+        <div class="tile"><b>1</b><span>builds</span></div>
+      </div>
+      <div class="cols">
+        <div class="panel">
+          <h3>To do</h3>
+          <div class="todo"><span class="ring"></span>Draft proposal for new enquiry</div>
+          <div class="todo"><span class="ring"></span>Review this week's invoices</div>
+          <div class="todo"><span class="ring"></span>Follow up on outstanding quote</div>
+          <div class="todo"><span class="ring"></span>Prep onboarding for new client</div>
+          <div class="todo"><span class="ring"></span>Schedule next site visit</div>
+        </div>
+        <div class="panel">
+          <h3>Projects</h3>
+          <div class="prj"><span class="n">Client portal build</span><span class="s">on track</span></div>
+          <div class="prj"><span class="n">E-commerce launch</span><span class="s warn">in review</span></div>
+          <div class="prj"><span class="n">Brand refresh</span><span class="s">scheduled</span></div>
+          <div class="prj"><span class="n">Internal tooling</span><span class="s">in progress</span></div>
+          <div class="prj"><span class="n">Outreach campaign</span><span class="s warn">waiting on assets</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat -->
+    <section class="view" id="view-chat">
+      <div class="chat" id="chat">
+        <div class="msg ind"><span class="who">induna</span>Morning. You've got 6 open tasks and 2 things waiting on your approval. Want me to line up the day?</div>
+        <div class="msg you"><span class="who">you</span>Yes — what's most urgent?</div>
+        <div class="msg ind"><span class="who">induna</span>The outstanding quote follow-up is 3 days old, and the new enquiry still needs a reply. I've drafted both — say the word and I'll send.</div>
+      </div>
+    </section>
+
+    <!-- All -->
+    <section class="view" id="view-all">
+      <div class="list">
+        <div class="item"><span class="ring"></span>Draft proposal for new enquiry<span class="tagm">work</span></div>
+        <div class="item"><span class="ring"></span>Review this week's invoices<span class="tagm">work</span></div>
+        <div class="item"><span class="ring"></span>Book dentist appointment<span class="tagm">personal</span></div>
+        <div class="item"><span class="ring"></span>Follow up on outstanding quote<span class="tagm">work</span></div>
+        <div class="item"><span class="ring"></span>Renew vehicle licence<span class="tagm">personal</span></div>
+        <div class="item"><span class="ring"></span>Prep onboarding for new client<span class="tagm">work</span></div>
+      </div>
+    </section>
+
+    <!-- Work -->
+    <section class="view" id="view-work">
+      <div class="list">
+        <div class="item"><span class="ring"></span>Draft proposal for new enquiry<span class="tagm">today</span></div>
+        <div class="item"><span class="ring"></span>Review this week's invoices<span class="tagm">today</span></div>
+        <div class="item"><span class="ring"></span>Follow up on outstanding quote<span class="tagm">overdue</span></div>
+        <div class="item"><span class="ring"></span>Prep onboarding for new client<span class="tagm">this week</span></div>
+        <div class="item"><span class="ring"></span>Schedule next site visit<span class="tagm">this week</span></div>
+        <div class="item"><span class="ring"></span>Send monthly report<span class="tagm">this week</span></div>
+      </div>
+    </section>
+
+    <!-- Personal -->
+    <section class="view" id="view-personal">
+      <div class="list">
+        <div class="item"><span class="ring"></span>Book dentist appointment<span class="tagm">soon</span></div>
+        <div class="item"><span class="ring"></span>Renew vehicle licence<span class="tagm">this month</span></div>
+        <div class="item"><span class="ring"></span>Plan weekend away<span class="tagm">someday</span></div>
+        <div class="item"><span class="ring"></span>Sort out home insurance quote<span class="tagm">this week</span></div>
+      </div>
+    </section>
+
+    <!-- Builds -->
+    <section class="view" id="view-builds">
+      <div class="list">
+        <div class="item"><span class="ring"></span>Client portal — build queued<span class="tagm">building</span></div>
+        <div class="item"><span class="ring"></span>Landing page variant — ready to deploy<span class="tagm">ready</span></div>
+      </div>
+    </section>
+
+    <div class="ask">
+      <form id="ask-form" autocomplete="off">
+        <input id="ask-input" placeholder="Speak to Induna…" aria-label="Speak to Induna">
+        <button class="send" type="submit" aria-label="Send">&uarr;</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching
+    var tabs = document.querySelectorAll('.tab');
+    var views = document.querySelectorAll('.view');
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){
+        tabs.forEach(function(x){x.classList.remove('on')});
+        t.classList.add('on');
+        var v = t.getAttribute('data-view');
+        views.forEach(function(s){ s.classList.toggle('on', s.id === 'view-'+v); });
+      });
+    });
+
+    // Canned chat responses (fully client-side, no backend)
+    var form = document.getElementById('ask-form');
+    var input = document.getElementById('ask-input');
+    var chat = document.getElementById('chat');
+    var replies = [
+      "On it. I've drafted that and popped it in your approvals — take a look when you're ready.",
+      "Done — I've added it to your list and set a reminder.",
+      "Here's a first pass. Want me to tighten the tone or send as-is?",
+      "Noted. I'll keep an eye on it and nudge you if it goes quiet."
+    ];
+    var r = 0;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var text = input.value.trim();
+      if(!text) return;
+      // jump to chat view
+      tabs.forEach(function(x){x.classList.toggle('on', x.getAttribute('data-view')==='chat')});
+      views.forEach(function(s){ s.classList.toggle('on', s.id==='view-chat'); });
+      add('you', text);
+      input.value = '';
+      var reply = replies[r % replies.length]; r++;
+      setTimeout(function(){ add('ind', reply); }, 500);
+    });
+    function add(who, text){
+      var d = document.createElement('div');
+      d.className = 'msg ' + (who==='you'?'you':'ind');
+      var w = document.createElement('span'); w.className='who'; w.textContent = who==='you'?'you':'induna';
+      d.appendChild(w); d.appendChild(document.createTextNode(text));
+      chat.appendChild(d);
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+</body>
+</html>
