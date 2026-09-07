@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BRK Group - High-performance lead generation for Cape Town tradesmen. We build the digital storefronts and lead pipelines that grow service businesses across South Africa.">
-  <title>Lead Generation for Cape Town Tradesmen & Service Businesses | BRK Group</title>
+  <meta name="description" content="BRK Group is a founder-run Cape Town consultancy. We help companies get their online presence and internal systems in order — from affordable professional websites to custom software and growth strategy.">
+  <title>BRK Group — Websites, custom software & growth for Cape Town businesses</title>
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://brkgroup.co.za">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://brkgroup.co.za">
-  <meta property="og:title" content="Lead Generation for Cape Town Tradesmen & Service Businesses | BRK Group">
-  <meta property="og:description" content="BRK Group - High-performance lead generation for Cape Town tradesmen. We build the digital storefronts and lead pipelines that grow service businesses across South Africa.">
+  <meta property="og:title" content="BRK Group — Websites, custom software & growth for Cape Town businesses">
+  <meta property="og:description" content="A founder-run Cape Town consultancy. Affordable websites and digital presence, custom software and app builds, growth consulting, and ongoing pipeline management. You deal with us directly.">
   <meta property="og:image" content="https://brkgroup.co.za/Images/Branding/BRK Logo Orange Transparent.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Lead Generation for Cape Town Tradesmen | BRK Group">
-  <meta name="twitter:description" content="BRK Group - High-performance lead generation for Cape Town tradesmen. We build digital storefronts and lead pipelines that grow service businesses across South Africa.">
+  <meta name="twitter:title" content="BRK Group — Websites, custom software & growth">
+  <meta name="twitter:description" content="A founder-run Cape Town consultancy. Websites, custom software, growth consulting and ongoing pipeline management for smaller and larger companies alike.">
   <meta name="twitter:image" content="https://brkgroup.co.za/Images/Branding/BRK Logo Orange Transparent.png">
+  <meta name="theme-color" content="#F3EDE3">
   <link rel="icon" href="Images/Branding/BRK Logo Orange Transparent.png" type="image/png">
   <link rel="apple-touch-icon" href="Images/Branding/BRK Logo Orange Transparent.png">
 
@@ -25,10 +26,12 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "BRK Group",
+    "description": "Founder-run Cape Town consultancy helping companies get their online presence and internal systems in order — websites and digital presence, custom software and app builds, business development and growth consulting, and ongoing pipeline management.",
     "image": "https://brkgroup.co.za/Images/Branding/edited logo simplified.png",
     "@id": "https://brkgroup.co.za",
     "url": "https://brkgroup.co.za",
     "telephone": "+27726478094",
+    "email": "marketing@brkgroup.co.za",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "",
@@ -42,6 +45,7 @@
       "latitude": -33.9249,
       "longitude": 18.4241
     },
+    "areaServed": "ZA",
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
@@ -62,23 +66,27 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Barlow+Condensed:wght@800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <!-- Navigation -->
-  <nav class="nav">
-    <a href="index.html" class="logo">
+  <nav class="nav" aria-label="Primary">
+    <a href="index.html" class="logo" aria-label="BRK Group — home">
       <img src="Images/Branding/BRK Logo Orange Transparent.png" alt="BRK Group" class="logo-img">
     </a>
     <ul class="nav-links">
-      <li><a href="#services">What We Do</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#who">Who it's for</a></li>
+      <li><a href="#approach">Approach</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#contact" class="nav-cta">Contact Us Today</a></li>
+      <li><a href="#contact" class="nav-cta">Start a conversation</a></li>
     </ul>
-    <button class="nav-toggle" aria-label="Toggle menu">
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span>
       <span></span>
       <span></span>
@@ -86,149 +94,222 @@
   </nav>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu">
+  <div class="mobile-menu" id="mobile-menu">
     <ul>
-      <li><a href="#services">What We Do</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#who">Who it's for</a></li>
+      <li><a href="#approach">Approach</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#contact" class="nav-cta">Contact Us Today</a></li>
+      <li><a href="#contact" class="nav-cta">Start a conversation</a></li>
     </ul>
   </div>
 
+  <main id="main">
+
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-content">
-      <div class="hero-label">Cape Town · Est. 2025</div>
+    <div class="hero-inner">
+      <p class="meta hero-meta">Founder-run &middot; Cape Town &middot; software &amp; digital</p>
       <h1 class="hero-title">
-        <span class="line line-1">More Calls.</span>
-        <span class="line line-2"><em>More Jobs.</em></span>
+        <span class="line">Get your online presence</span>
+        <span class="line">and your systems <span class="accent">in order.</span></span>
       </h1>
-      <div class="hero-tagline">No middlemen. No guesswork. Just results.</div>
-      <p class="hero-description">We help small trade businesses across South Africa get found online, handle enquiries properly, and run their operation without the admin chaos. Built in Cape Town. Built for the people who build things.</p>
+      <p class="hero-description">
+        BRK Group is a small, founder-run Cape Town consultancy. We help companies get found online,
+        get their internal systems working, and build the custom tools they need to grow —
+        from an affordable first website to software built around how you actually operate.
+      </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Contact Us Today</a>
-        <a href="#services" class="btn btn-ghost">See how it works →</a>
+        <a href="#contact" class="btn btn-primary">Start a conversation</a>
+        <a href="#services" class="btn btn-link">See what we do <span aria-hidden="true">&rarr;</span></a>
       </div>
+    </div>
+
+    <!-- The one orchestrated motion moment: the growth mark draws in -->
+    <div class="hero-mark" aria-hidden="true">
+      <svg viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg" role="presentation">
+        <!-- rising growth line -->
+        <path class="mark-line" d="M14 182 C70 178 96 150 118 108 C138 70 150 44 168 26"
+              stroke="var(--clay)" stroke-width="7" stroke-linecap="round"/>
+        <!-- arrowhead -->
+        <path class="mark-head" d="M140 30 L176 20 L172 58"
+              stroke="var(--clay)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- the arc, echoing the logo -->
+        <path class="mark-arc" d="M28 96 C70 44 150 44 196 74"
+              stroke="var(--slate)" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+      </svg>
     </div>
   </section>
 
-  <!-- Services Section -->
+  <!-- Services / Capability Index -->
   <section id="services" class="section section-services">
-    <div class="section-header">
-      <span class="section-eyebrow">What We Do</span>
-      <h2 class="section-title">Four things.<br><em>Done properly.</em></h2>
+    <div class="section-head">
+      <p class="meta">What we do</p>
+      <h2 class="section-title">Four things we do &mdash; <span class="accent">none of them secondary.</span></h2>
+      <p class="section-lede">
+        A smaller client might only ever need the first. A larger one might only need the second.
+        Both are equally the business. Take what you need.
+      </p>
     </div>
-    <div class="pillars">
-      <div class="pillar">
-        <span class="pillar-num">01</span>
-        <h3>Your Website</h3>
-        <p>A clean, professional site that works on mobile and tells the right story — so when someone finds you, they call you.</p>
+
+    <ol class="capability-index" role="list">
+      <li class="capability capability--clay">
+        <div class="capability-tag"><span class="meta">websites</span></div>
+        <div class="capability-body">
+          <h3>Websites &amp; digital presence</h3>
+          <p>Affordable, professional sites that work on mobile and say the right thing. Google Business,
+             social profiles and directory listings set up and pointing the right way. The natural place
+             for a smaller business to start.</p>
+        </div>
+        <p class="capability-for meta">Best entry point for smaller companies</p>
+      </li>
+
+      <li class="capability capability--slate">
+        <div class="capability-tag"><span class="meta">software</span></div>
+        <div class="capability-body">
+          <h3>Custom software &amp; app builds</h3>
+          <p>Internal tools, booking, tracking and job-management systems, client-facing apps — built
+             around how your operation actually runs, not forced into off-the-shelf software. Where most
+             of the larger-company work lives.</p>
+        </div>
+        <p class="capability-for meta">Built for larger or more complex operations</p>
+      </li>
+
+      <li class="capability capability--clay">
+        <div class="capability-tag"><span class="meta">growth</span></div>
+        <div class="capability-body">
+          <h3>Business development &amp; growth consulting</h3>
+          <p>Positioning, target-market strategy, pricing and outreach systems. The thinking behind the
+             build — figuring out who you're actually for and how the work should come in, before a line
+             of anything gets made.</p>
+        </div>
+        <p class="capability-for meta">Strategy, not just delivery</p>
+      </li>
+
+      <li class="capability capability--slate">
+        <div class="capability-tag"><span class="meta">retainer</span></div>
+        <div class="capability-body">
+          <h3>Ongoing retainer &amp; pipeline management</h3>
+          <p>For clients who want it managed after launch: leads and pipeline kept moving, iterative
+             development, and a steady hand on the systems so they keep earning their keep instead of
+             going stale.</p>
+        </div>
+        <p class="capability-for meta">For clients who want it run, not handed over</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- Who it's for -->
+  <section id="who" class="section section-who">
+    <div class="section-head">
+      <p class="meta">Who it's for</p>
+      <h2 class="section-title">We speak to your <span class="accent">size and your need</span> &mdash; not a fixed list of industries.</h2>
+    </div>
+    <div class="who-grid">
+      <div class="who-pole who-pole--clay">
+        <p class="meta">Mostly</p>
+        <h3>Smaller companies</h3>
+        <p>Most of our work. You want a professional presence and simple systems that just work —
+           without agency overheads, jargon, or being sold things you don't need. It usually starts
+           with a website and grows from there.</p>
       </div>
-      <div class="pillar">
-        <span class="pillar-num">02</span>
-        <h3>Your Online Presence</h3>
-        <p>Google Business Profile, social media setup, and directory listings — all connected, consistent, and pointing people your way.</p>
+      <div class="who-connector" aria-hidden="true">
+        <span class="who-connector-line"></span>
+        <span class="who-connector-dot"></span>
       </div>
-      <div class="pillar">
-        <span class="pillar-num">03</span>
-        <h3>Your Lead Pipeline</h3>
-        <p>WhatsApp, phone, email, and form enquiries routed so nothing slips. Every lead captured, every follow-up handled.</p>
-      </div>
-      <div class="pillar">
-        <span class="pillar-num">04</span>
-        <h3>Your Job Management</h3>
-        <p>Track quotes, active jobs, and follow-ups in one place. Know what's on, what's pending, and what needs attention — without the spreadsheet chaos.</p>
+      <div class="who-pole who-pole--slate">
+        <p class="meta">Also</p>
+        <h3>Larger companies</h3>
+        <p>You need custom software built — an internal tool, a booking or job-management system, a
+           client app — by someone who takes the time to understand how your business actually runs
+           before building anything.</p>
       </div>
     </div>
   </section>
 
-  <!-- How It Works Section -->
-  <section id="how-it-works" class="section section-process">
-    <div class="section-header">
-      <span class="section-eyebrow">Our Process</span>
-      <h2 class="section-title">Simple from day one.<br><em>Built to last.</em></h2>
-    </div>
-    <div class="process-steps">
-      <div class="step">
-        <span class="step-num">01</span>
-        <h3>We Listen</h3>
-        <p>We start by understanding your business — what you do, where you work, and where the gaps are. No assumptions, no generic templates.</p>
-      </div>
-      <div class="step">
-        <span class="step-num">02</span>
-        <h3>We Build</h3>
-        <p>We set up your website, listings, and lead systems — fast, properly, and tailored to the South African market.</p>
-      </div>
-      <div class="step">
-        <span class="step-num">03</span>
-        <h3>You Grow</h3>
-        <p>For clients on retainer, we keep everything sharp — optimising your presence and pipeline so the work keeps coming.</p>
-      </div>
+  <!-- Ethos band (the one inverted-contrast moment) -->
+  <section class="ethos">
+    <div class="ethos-inner">
+      <p class="meta ethos-meta">Why work with us</p>
+      <p class="ethos-statement">
+        We're small and founder-run, which means <span class="accent">you deal with us directly</span> —
+        not an account manager, not a junior. No sales pitch, just a straight conversation about what you
+        need and whether we're the right fit. When we take something on, we take it seriously.
+      </p>
     </div>
   </section>
 
-  <!-- About Section -->
+  <!-- Approach (a genuine sequence — numbering earns its place here) -->
+  <section id="approach" class="section section-approach">
+    <div class="section-head">
+      <p class="meta">How it works</p>
+      <h2 class="section-title">Simple from day one. <span class="accent">Built to last.</span></h2>
+    </div>
+    <ol class="steps">
+      <li class="step">
+        <span class="step-num meta">01</span>
+        <h3>We listen</h3>
+        <p>We start by understanding your business — what you do, where you work, and where the gaps
+           actually are. No assumptions, no generic template dropped on top.</p>
+      </li>
+      <li class="step">
+        <span class="step-num meta">02</span>
+        <h3>We build</h3>
+        <p>We put the right thing in place — a site, a system, a strategy, or all three — properly and
+           at a pace that fits your budget. You'll always know what's being done and why.</p>
+      </li>
+      <li class="step">
+        <span class="step-num meta">03</span>
+        <h3>You grow</h3>
+        <p>For clients on retainer, we keep everything sharp and moving — refining the presence, the
+           pipeline and the systems so they keep pulling their weight long after launch.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- About -->
   <section id="about" class="section section-about">
     <div class="about-grid">
-      <div class="about-content">
-        <span class="section-eyebrow">About BRK Group</span>
-        <h2 class="section-title">We know this market.<br><em>And we know this industry.</em></h2>
-        <p>BRK Group is a Cape Town-based team that works exclusively with trade and service businesses. We understand the market — the way work is found here, the way clients think, and what it actually takes to stand out in a competitive local area.</p>
-        <p>We're a small, founder-run operation. That means you deal with us directly — not an account manager, not a junior. When we take something on, we take it seriously.</p>
-        <p>Whether you need a once-off build or an ongoing partner to manage your pipeline, we'll tell you honestly what will move the needle and what won't.</p>
+      <div class="section-head about-head">
+        <p class="meta">About</p>
+        <h2 class="section-title">A studio that <span class="accent">builds things.</span></h2>
+      </div>
+      <div class="about-body">
+        <p>BRK Group is a new partnership growing out of Kinnear Systems, a Cape Town web and software
+           studio run by Rhys. It's a consultancy in the plain sense: we help companies get their online
+           presence and their internal systems in order.</p>
+        <p>That means everything from an affordable website for a local business to custom software for a
+           larger company that needs a tool built for the way it works — plus the business-development
+           thinking to make sure the build is pointed at the right thing.</p>
+        <p>Whether you need a once-off build or an ongoing partner, we'll tell you honestly what will move
+           the needle and what won't. You deal with the people doing the work.</p>
       </div>
     </div>
   </section>
 
-  <!-- Who We Work With -->
-  <section class="section section-industries">
-    <div class="section-header">
-      <span class="section-eyebrow">Who We Work With</span>
-      <h2 class="section-title">Trades & services<br><em>that need more work.</em></h2>
-    </div>
-    <div class="industries-grid">
-      <div class="industry">Plumbers</div>
-      <div class="industry">Electricians</div>
-      <div class="industry">Builders</div>
-      <div class="industry">Painters</div>
-      <div class="industry">Landscapers</div>
-      <div class="industry">HVAC</div>
-      <div class="industry">Cleaning Services</div>
-      <div class="industry">Security</div>
-      <div class="industry">Pool Services</div>
-      <div class="industry">Pest Control</div>
-      <div class="industry">Roofing</div>
-      <div class="industry">And More</div>
-    </div>
-  </section>
-
-  <!-- CTA Band -->
-  <section class="cta-band">
-    <h2>Ready to get<br><em>more work?</em></h2>
-    <a href="#contact" class="btn btn-white">Contact Us Today</a>
-  </section>
-
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section id="contact" class="section section-contact">
     <div class="contact-grid">
       <div class="contact-content">
-        <span class="section-eyebrow">Get In Touch</span>
-        <h2 class="section-title">Tell us about<br><em>your business.</em></h2>
-        <p>Drop us a message and we'll come back to you within 24 hours. No sales pitch — just a straight conversation about what you need and whether we're the right fit.</p>
+        <p class="meta">Get in touch</p>
+        <h2 class="section-title">Tell us about <span class="accent">your business.</span></h2>
+        <p class="contact-lede">Drop us a message and we'll come back to you within 24 hours. No sales
+           pitch — just a straight conversation about what you need and whether we're the right fit.</p>
         <div class="contact-info">
           <div class="contact-item">
-            <span class="contact-label">Email</span>
+            <span class="contact-label meta">Email</span>
             <a href="mailto:marketing@brkgroup.co.za">marketing@brkgroup.co.za</a>
           </div>
           <div class="contact-item">
-            <span class="contact-label">Phone</span>
+            <span class="contact-label meta">Phone</span>
             <a href="tel:+27726478094">072 647 8094</a>
           </div>
           <div class="contact-item">
-            <span class="contact-label">WhatsApp</span>
+            <span class="contact-label meta">WhatsApp</span>
             <a href="https://wa.me/27718074252">071 807 4252</a>
           </div>
           <div class="contact-item">
-            <span class="contact-label">Location</span>
+            <span class="contact-label meta">Location</span>
             <span>Cape Town, South Africa</span>
           </div>
         </div>
@@ -237,39 +318,41 @@
         <input type="hidden" name="_subject" value="New enquiry from BRK Group website">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
         <div class="form-group">
-          <label for="name">Your Name</label>
+          <label for="name">Your name</label>
           <input type="text" id="name" name="name" required>
         </div>
         <div class="form-group">
-          <label for="email">Email Address</label>
+          <label for="email">Email address</label>
           <input type="email" id="email" name="email" required>
         </div>
         <div class="form-group">
           <label for="business">What's your business?</label>
-          <input type="text" id="business" name="business" placeholder="e.g. Electrical, Plumbing, Painting...">
+          <input type="text" id="business" name="business" placeholder="Company name, and roughly what you do">
         </div>
         <div class="form-group">
-          <label for="message">Tell us what you need</label>
-          <textarea id="message" name="message" rows="4" placeholder="What's not working right now? More leads, better systems, a website that actually converts?"></textarea>
+          <label for="message">What do you need?</label>
+          <textarea id="message" name="message" rows="4" placeholder="A website, a custom system, help with growth — or you're not sure yet. Tell us what's not working."></textarea>
         </div>
-        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
-        <div class="form-success">
+        <button type="submit" class="btn btn-primary btn-full">Send message</button>
+        <div class="form-success" role="status" aria-live="polite">
           <p>Thanks for reaching out. We'll be in touch within 24 hours.</p>
         </div>
       </form>
     </div>
   </section>
 
+  </main>
+
   <!-- Footer -->
   <footer class="footer">
-    <div class="footer-content">
-      <a href="index.html" class="logo">
+    <div class="footer-top">
+      <a href="index.html" class="logo" aria-label="BRK Group — home">
         <img src="Images/Branding/BRK Logo Orange Transparent.png" alt="BRK Group" class="logo-img">
       </a>
-      <p class="footer-tagline">Lead generation for trades & service businesses.</p>
+      <p class="footer-tagline">Getting your online presence and your systems in order.<br>Cape Town, South Africa.</p>
     </div>
     <div class="footer-bottom">
-      <p>&copy; <span id="copyright-year">2025</span> BRK Group. Cape Town, South Africa.</p>
+      <p>&copy; <span id="copyright-year">2026</span> BRK Group. All rights reserved.</p>
       <div class="footer-links">
         <a href="mailto:marketing@brkgroup.co.za">marketing@brkgroup.co.za</a>
         <a href="privacy.html">Privacy Policy</a>
@@ -278,12 +361,11 @@
   </footer>
 
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script defer src="js/main.js"></script>
 
   <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/27718074252" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <a href="https://wa.me/27718074252" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
   </a>
