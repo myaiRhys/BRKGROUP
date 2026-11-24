@@ -1,6 +1,6 @@
 # BRK Group Website
 
-Lead generation and digital presence for trades & service businesses across South Africa.
+Website for BRK Group, a founder-run business consultancy in Cape Town (management, clients and growth, digital).
 
 ## Structure
 
